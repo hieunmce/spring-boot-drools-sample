@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.sample'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext {
+    droolsVersion = "7.32.0.Final"
+}
+
+configurations {
+	// developmentOnly
+	// runtimeClasspath {
+	// 	extendsFrom developmentOnly
+	// }
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.drools:drools-core:7.30.0.Final'
+    implementation 'org.drools:drools-decisiontables:7.30.0.Final'
+    implementation 'org.drools:drools-compiler:7.30.0.Final'
+    implementation 'org.kie:kie-ci:7.30.0.Final'
+    implementation 'org.kie:kie-spring:7.30.0.Final'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
